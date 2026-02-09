@@ -1,0 +1,492 @@
+/* =====================================
+   VARIABLES ET RESET
+   ===================================== */
+:root {
+    /* Palette de couleurs pastel romantique */
+    --pink-light: #FFE5EC;
+    --pink-soft: #FFB3C6;
+    --pink-medium: #FF8FAB;
+    --pink-dark: #FB6F92;
+    --pink-accent: #FF69B4;
+    
+    --purple-light: #E8D5F2;
+    --cream: #FFF5F7;
+    --white: #FFFFFF;
+    
+    /* Ombres douces */
+    --shadow-sm: 0 2px 8px rgba(255, 105, 180, 0.1);
+    --shadow-md: 0 4px 16px rgba(255, 105, 180, 0.15);
+    --shadow-lg: 0 8px 24px rgba(255, 105, 180, 0.2);
+    
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--pink-light) 0%, var(--purple-light) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* =====================================
+   CONTENEUR PRINCIPAL
+   ===================================== */
+.container {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+}
+
+/* =====================================
+   EN-TÊTE
+   ===================================== */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: slideDown 0.8s ease-out;
+}
+
+.title {
+    color: var(--pink-dark);
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+    margin-bottom: 15px;
+}
+
+.hearts-decoration {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.heart {
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+    display: inline-block;
+}
+
+.heart:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.heart:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* =====================================
+   CONTENEUR DU QUIZ
+   ===================================== */
+.quiz-container {
+    background: var(--white);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+    min-height: 400px;
+    position: relative;
+}
+
+/* =====================================
+   ÉCRAN DE BIENVENUE
+   ===================================== */
+.welcome-screen {
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+}
+
+.welcome-title {
+    color: var(--pink-dark);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.welcome-text {
+    color: var(--pink-medium);
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+/* =====================================
+   BOUTONS
+   ===================================== */
+.btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-start {
+    background: linear-gradient(135deg, var(--pink-medium), var(--pink-accent));
+    color: var(--white);
+}
+
+.btn-start:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+/* =====================================
+   ÉCRAN DES QUESTIONS
+   ===================================== */
+.question-screen {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--pink-light);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink-medium), var(--pink-accent));
+    border-radius: 10px;
+    transition: width 0.5s ease-out;
+    width: 0%;
+}
+
+.question-number {
+    color: var(--pink-medium);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.question-text {
+    color: var(--pink-dark);
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* =====================================
+   CONTENEUR DES RÉPONSES
+   ===================================== */
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.answer-btn {
+    padding: 20px 30px;
+    font-size: 1.1rem;
+    background: var(--cream);
+    color: var(--pink-dark);
+    border: 3px solid var(--pink-soft);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.answer-btn:hover {
+    background: var(--pink-soft);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Bouton "Oui" qui grossit */
+.answer-btn.yes-btn {
+    background: linear-gradient(135deg, var(--pink-soft), var(--pink-accent));
+    color: var(--white);
+    border-color: var(--pink-accent);
+}
+
+/* Animation de grossissement pour le bouton Oui */
+.answer-btn.yes-btn.grow {
+    animation: growButton 0.3s forwards;
+}
+
+/* Bouton "Non" qui fuit */
+.answer-btn.no-btn {
+    position: relative;
+    transition: all 0.1s ease-out;
+}
+
+/* =====================================
+   ÉCRAN DE FIN
+   ===================================== */
+.end-screen {
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.end-title {
+    color: var(--pink-dark);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.end-text {
+    color: var(--pink-medium);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Loading spinner */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--pink-light);
+    border-top: 4px solid var(--pink-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Messages de succès et d'erreur */
+.success-message,
+.error-message {
+    padding: 30px;
+    border-radius: 20px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.success-message {
+    background: linear-gradient(135deg, var(--pink-light), var(--cream));
+    color: var(--pink-dark);
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: bounce 1s ease-out;
+}
+
+.error-message {
+    background: #FFE5E5;
+    color: #D64545;
+}
+
+.small-text {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* =====================================
+   FOOTER DÉCORATIF
+   ===================================== */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -50px;
+    font-size: 2rem;
+    opacity: 0.6;
+    animation: floatUp 8s infinite;
+}
+
+.floating-heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.floating-heart:nth-child(3) {
+    left: 60%;
+    animation-delay: 4s;
+}
+
+.floating-heart:nth-child(4) {
+    left: 85%;
+    animation-delay: 6s;
+}
+
+/* =====================================
+   UTILITAIRES
+   ===================================== */
+.hidden {
+    display: none !important;
+}
+
+/* =====================================
+   ANIMATIONS
+   ===================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        bottom: -50px;
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        bottom: 100vh;
+        opacity: 0;
+    }
+}
+
+@keyframes growButton {
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* =====================================
+   RESPONSIVE - MOBILE
+   ===================================== */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .quiz-container {
+        padding: 25px;
+    }
+    
+    .welcome-title {
+        font-size: 1.6rem;
+    }
+    
+    .welcome-text {
+        font-size: 1rem;
+    }
+    
+    .question-text {
+        font-size: 1.4rem;
+    }
+    
+    .answer-btn {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .title {
+        font-size: 1.6rem;
+    }
+    
+    .quiz-container {
+        padding: 20px;
+        border-radius: 20px;
+    }
+    
+    .question-text {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+}

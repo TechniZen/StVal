@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 Mon Quiz de Saint-Valentin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Conteneur principal -->
+    <div class="container">
+        <!-- En-tête mignon -->
+        <header class="header">
+            <h1 class="title">💝 Quiz de Saint-Valentin 💝</h1>
+            <div class="hearts-decoration">
+                <span class="heart">💗</span>
+                <span class="heart">💖</span>
+                <span class="heart">💗</span>
+            </div>
+        </header>
+
+        <!-- Zone du quiz -->
+        <div class="quiz-container" id="quizContainer">
+            <!-- Écran de bienvenue -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <h2 class="welcome-title">Bienvenue mon amour ! 🌸</h2>
+                <p class="welcome-text">J'ai préparé un petit quiz spécial pour toi...</p>
+                <button class="btn btn-start" id="startBtn">Commencer 💕</button>
+            </div>
+
+            <!-- Écran des questions -->
+            <div class="question-screen hidden" id="questionScreen">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="question-number" id="questionNumber">Question 1/5</p>
+                <h2 class="question-text" id="questionText"></h2>
+                
+                <!-- Zone des boutons de réponse -->
+                <div class="answers-container" id="answersContainer">
+                    <!-- Les boutons seront générés dynamiquement -->
+                </div>
+            </div>
+
+            <!-- Écran de fin -->
+            <div class="end-screen hidden" id="endScreen">
+                <h2 class="end-title">Merci mon cœur ! 💖</h2>
+                <p class="end-text">Tes réponses ont été enregistrées avec amour...</p>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Envoi de tes réponses par email... 📧</p>
+                </div>
+                <div class="success-message hidden" id="successMessage">
+                    <div class="success-icon">✨</div>
+                    <p>Email envoyé avec succès ! 💌</p>
+                    <p class="small-text">Vérifie ta boîte mail pour voir ton récapitulatif</p>
+                </div>
+                <div class="error-message hidden" id="errorMessage">
+                    <p>Oups ! Une erreur s'est produite 😢</p>
+                    <p class="small-text" id="errorText"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer décoratif -->
+        <footer class="footer">
+            <div class="floating-hearts">
+                <span class="floating-heart">💕</span>
+                <span class="floating-heart">💗</span>
+                <span class="floating-heart">💖</span>
+                <span class="floating-heart">💝</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
