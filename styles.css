@@ -251,6 +251,74 @@ body {
 }
 
 /* =====================================
+   QUESTIONS OUVERTES (TEXTAREA)
+   ===================================== */
+.open-answer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.open-answer-textarea {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    background: var(--cream);
+    color: var(--pink-dark);
+    border: 3px solid var(--pink-soft);
+    border-radius: 20px;
+    resize: vertical;
+    min-height: 120px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.open-answer-textarea:focus {
+    outline: none;
+    border-color: var(--pink-accent);
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.open-answer-textarea::placeholder {
+    color: var(--pink-soft);
+    opacity: 0.8;
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--pink-medium);
+    font-weight: 500;
+}
+
+.submit-open-answer {
+    background: var(--pink-light);
+    color: var(--pink-medium);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.submit-open-answer.active {
+    background: linear-gradient(135deg, var(--pink-soft), var(--pink-accent));
+    color: var(--white);
+    border-color: var(--pink-accent);
+    cursor: pointer;
+    opacity: 1;
+}
+
+.submit-open-answer.active:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.submit-open-answer:disabled {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+}
+
+/* =====================================
    ÉCRAN DE FIN
    ===================================== */
 .end-screen {
@@ -469,6 +537,12 @@ body {
         padding: 12px 30px;
         font-size: 1rem;
     }
+    
+    .open-answer-textarea {
+        font-size: 1rem;
+        padding: 15px;
+        min-height: 100px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -488,5 +562,10 @@ body {
     .question-text {
         font-size: 1.2rem;
         margin-bottom: 30px;
+    }
+    
+    .open-answer-textarea {
+        font-size: 0.95rem;
+        padding: 12px;
     }
 }
